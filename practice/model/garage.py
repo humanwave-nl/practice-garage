@@ -8,7 +8,8 @@ class Garage(ndb.Model):
     brand = ndb.StringProperty()
 
     postal_country = ndb.StringProperty()
-
+    price_per_hours = ndb.FloatProperty()
+    roundup_workhrs = ndb.BooleanProperty()
     note = ndb.TextProperty(indexed=False)
 
     @classmethod
@@ -33,9 +34,9 @@ class Garage(ndb.Model):
         """
         q = Garage.query()
         if name:
-            q.filter(Garage.name == name)
+            q = q.filter(Garage.name == name)
         elif brand:
-            q.filter(Garage.brand == brand)
+            q = q.filter(Garage.brand == brand)
         if limit:
             return q.fetch(limit)
         return [x for x in q]
@@ -47,11 +48,21 @@ class Garage(ndb.Model):
             self.brand = props['brand']
         if 'note' in props:
             self.note = props['note']
+        if 'price_per_hours' in props:
+            self.price_per_hours = props['price_per_hours']
 
     def save(self):
         self.put()
         # i changed a garage so cache list incorrect
         memcache.delete("garages")
+
+    @classmethod
+    def update(cls, ident, props):
+        c = cls.get(key=ident)
+        c.fill(props=props)
+        c.save()
+        return c
+        
 
     @classmethod
     def add(cls, props):
