@@ -20,7 +20,7 @@
     "webpack": "^3.8.1"
   },
   "dependencies": {
-    "bootstrap": "^3.3.5",
+    "bootstrap": "^3.4.1",
     "jquery": "^3.3.1",
     "vue": "^2.5.3",
     "vue-router": "^3.0.1"
