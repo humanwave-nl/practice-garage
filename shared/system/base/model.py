@@ -56,8 +56,8 @@ class BaseModel(ndb.Model, MixinDefaults):
         return entity
 
     @classmethod
-    def add(cls, props, **kwargs):
-        entity = cls(**kwargs)
+    def add(cls, props, parent=None, **kwargs):
+        entity = cls(parent=parent, **kwargs)
         entity.fill(props=props)
         return entity.save()
 
@@ -73,11 +73,13 @@ class BaseModel(ndb.Model, MixinDefaults):
         """
         """
         with self.ndb_context():
-            return self.put()
+            self.put()
+        return self
 
     def delete(self):
         with self.ndb_context():
-            return self.key.delete()
+            self.key.delete()
+        return self
 
     def __repr__(self):
         with datastore.client.context():
