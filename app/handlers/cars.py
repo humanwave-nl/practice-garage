@@ -4,10 +4,10 @@ from shared.model.car import Car
 from shared.model.garage import Garage
 import logging
 
-bp = Blueprint(name='cars', import_name=__name__, url_prefix='/cars')
+bp = Blueprint(name='cars', import_name=__name__, url_prefix='/<garage_id>/cars')
 
 # @garages.route('/', defaults={'page': 'index'})
-@bp.route('/<garage_id>', methods=["GET"])
+@bp.route('/', methods=["GET"])
 def car_list(garage_id):
     print(garage_id)
     garage = Garage.get(int(garage_id))
@@ -25,14 +25,14 @@ def car_list(garage_id):
     }), 404
 
 
-@bp.route('/<garage_id>', methods=["POST"])
+@bp.route('/', methods=["POST"])
 def car_add(garage_id):
     garage = Garage.get(garage_id)
     logging.warning(request.json)
     car = Car.add(props=request.json, parent=garage.key)
     return jsonify(car_to_json(car))
 
-@bp.route('/<garage_id>', methods=["PUT"])
+@bp.route('/', methods=["PUT"])
 def car_update(garage_id):
     props = request.json
     garage = Garage.get(garage_id)
@@ -41,7 +41,7 @@ def car_update(garage_id):
     car.update(props=props)
     return jsonify(car_to_json(car))
 
-@bp.route('/<garage_id>', methods=["DELETE"])
+@bp.route('/', methods=["DELETE"])
 def car_delete(garage_id):
     garage = Garage.get(key=garage_id)
     car = Car.get(key=request.json.pop('id'), parent=garage.key)
