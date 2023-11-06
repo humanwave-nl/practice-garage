@@ -78,6 +78,7 @@ form.form-col div.form-row, label {
   grid-template-columns: 150px 1fr;
   gap: 8px;
   align-items: center;
+  text-align: right;
   
 }
 form.form-col label label, span {
