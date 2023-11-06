@@ -2,8 +2,11 @@
 	<div class="grid-container">
 		<div class="title">
 			<h1>Garages</h1>
-			<new-garage @change="garageList=$event"></new-garage>
-
+			<button type="button" class="btn" @click="garageDialog = true;">Add garage</button>
+			<new-garage-dialog
+				v-if="garageDialog"
+				@close="garageDialog = false;"
+			/>
 		</div>
 		<ul class="list-group">
 		    <li v-for="g in garageList" class="list-group-item">
@@ -18,14 +21,15 @@
     import GarageListItem from "./garage-list-item";
     import GarageForm from "./garage-form";
 	import NewGarage from "./new-garage";
+	import NewGarageDialog from "./new-garage-dialog"
 
 	export default {
 		name: 'garage-list',
-		components: {NewGarage, GarageListItem, GarageForm},
-		data: function () {
+		components: {NewGarage, GarageListItem, GarageForm, NewGarageDialog},
+		data() {
 			return {
 				garageList: [],
-                garageDialog: true,
+                garageDialog: false,
 			}
 		},
 		methods: {
@@ -53,22 +57,33 @@
 <style scoped>
 	.grid-container {
 		display: grid;
-		grid-template-columns: 2fr 6fr;
-		grid-gap: 10px;
-		grid-auto-rows: min-content;
+        grid-template-columns: 1fr;
+        grid-template-rows: 60px 1fr;
+		grid-gap: 8px;
 		grid-template-areas:
-			"title garage-list ";
+			"title"
+			"garage-list";
 	}
 
-	.title {
-        grid-area: title;
-		margin-right: 20px;
-    }
 	.list-group {
         grid-area: garage-list;
     }
     .add-garage {
         margin: 4px;
     }
+
+	.title {
+        grid-area: title;
+		display: flex;
+		align-items: center; /* Vertical align the elements to the center */
+	}
+
+	h1 {
+		margin: 0;
+	}
+
+	button {
+		margin-left: auto; /* Push this element to the right */
+	}
 
 </style>

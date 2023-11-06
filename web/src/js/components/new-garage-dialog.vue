@@ -1,9 +1,10 @@
 <template>
-    <dialog
+    <modal
         title="New garage"
+        @close="$emit('close')"
     >
         <new-garage></new-garage>
-    </dialog>
+</modal>
 </template>
 
 <script>
