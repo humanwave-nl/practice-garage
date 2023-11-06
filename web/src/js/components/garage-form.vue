@@ -53,23 +53,18 @@
         },
         methods:{
             save() {
-                if (this.garage.id) {
-                    Object.assign(this.myGarage, this.garage)
-                }
-                $.ajax({
-					type: this.myGarage.id ? 'PUT':'POST',
-					url: `/garages/`,
-					contentType: 'application/json',
-                    data: JSON.stringify(this.myGarage),
-					timeout: 2000
-				}).then((data) => {
-                    this.$emit('change', data)
-                    if (this.garage.id === undefined){
-                        this.resetForm()
-                    }
-				}).always(() => {
-					// this.loading = false
-				})
+                fetch('/garages/', {
+                    method: this.myGarage.id ? 'PUT':'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(this.myGarage)
+                })
+                    .then(response => response.json())
+                    .then((response) => {
+                        console.log(JSON.stringify(response))
+                        this.$emit('update', data)
+                        this.$emit('close')
+                    })
+                    
             },
             resetForm() {
                 if (this.garage.id) {

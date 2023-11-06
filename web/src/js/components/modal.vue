@@ -11,8 +11,9 @@
                                     type="button"
                                     class="btn btn-option"
                                     @click="$emit('close');"
+                                    style="display: flex; justify-content: center;"
                                 >
-                                    <i class="far fa-times fa-lg"></i>
+                                    <i class="fas fa-times fa-lg" style="margin: auto;"></i>
                                 </button>
                             </h3>
                         </slot>
@@ -60,7 +61,7 @@
     }
 
     .modal-container {
-        width: 300px;
+        width: 600px;
         margin: 0px auto;
         padding: 20px 30px;
         background-color: #fff;

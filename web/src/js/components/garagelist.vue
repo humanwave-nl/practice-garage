@@ -5,6 +5,7 @@
 			<button type="button" class="btn" @click="garageDialog = true;">Add garage</button>
 			<new-garage-dialog
 				v-if="garageDialog"
+				@update="updateList"
 				@close="garageDialog = false;"
 			/>
 		</div>
@@ -46,6 +47,9 @@
 					// this.loading = false
 				})
 			},
+			updateList(data) {
+				this.garageList.push(data)
+			}
 		},
 		created: function() {
 			this.load();
