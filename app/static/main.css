@@ -73,15 +73,14 @@ form.form-col {
     
 }
 
-form.form-col div.form-row, label {
+form.form-col div.form-row, form.form-col label {
   display: grid;
   grid-template-columns: 150px 1fr;
   gap: 8px;
   align-items: center;
   text-align: right;
-  
 }
-form.form-col label label, span {
+form.form-col label label, form.form-col label span {
     text-align: right;
     font-weight: bold;
     margin-bottom: 0;
