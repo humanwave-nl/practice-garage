@@ -121,8 +121,7 @@ know what you’re doing.  If you don’t know what you’re doing, you can run
 the following:
 
 ```sh
-[ -n "${BASH_VERSION}" ] && echo Bash
-[ -n "${ZSH_VERSION}"  ] && echo Zsh
+[ -n "${BASH_VERSION}" ] && echo Bash; [ -n "${ZSH_VERSION}" ] && echo Zsh
 ```
 
 If you’re using Bash then your startup script will be located at
