@@ -213,6 +213,15 @@ gcloud components install app-engine-python beta cloud-datastore-emulator
 
 [3]: https://cloud.google.com/sdk/docs/install
 
+## Java
+
+You need Java to run the datastore.  You do not need Java for anything
+else (thankfully).  You can install Java with Brew:
+
+```sh
+brew install java
+```
+
 ---
 
 ## Project Initialization
