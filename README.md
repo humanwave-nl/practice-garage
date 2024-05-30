@@ -222,7 +222,7 @@ all your data will be stored by the backend.  We can do this with gcloud:
 
 ```sh
 gcloud beta emulators datastore start \
-    --project practice-garage --host-port localhost:8000
+    --project practice-garage --host-port localhost:8001
 ```
 
 After that, you need to run the script `dev_appserver.py`, which runs the
@@ -231,19 +231,3 @@ backend with the appropriate environment variables set:
 ```sh
 ./dev_appserver.py
 ```
-
-Sadly Google did not include a datastore viewer in gcloud, but luckily
-for us there is a package called [Datastore Emulator UI][4] (or DSUI for
-short) to get this functionality back.  To install run the following:
-
-```sh
-npm i -g @streamrail/dsui
-```
-
-Then to run DSUI, run the following:
-
-```sh
-dsui -r practice-garage -e localhost:8000
-```
-
-[4]: https://github.com/streamrail/dsui
