@@ -222,6 +222,16 @@ else (thankfully).  You can install Java with Brew:
 brew install java
 ```
 
+**Important Note!**
+
+It may be the case that you get an error upon starting up your datastore
+that Java was not found in your PATH.  If this is the case then the
+following line should be added to your shells startup file:
+
+```sh
+export PATH="$(brew --prefix)/opt/openjdk/bin:$PATH"
+```
+
 ---
 
 ## Project Initialization
